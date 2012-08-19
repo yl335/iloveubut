@@ -7,12 +7,14 @@ var app = express.createServer(express.logger());
 var client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 
+/*
 var query = client.query('SELECT * FROM weather');
 query.on('row', function(row) {
 	console.log(row);
 	console.log("City: %s", row.city);
 	console.log("Date: %tc/%Tc\n", row.date);
 });
+*/
 /*
 query.on('end', function() { 
   client.end();
