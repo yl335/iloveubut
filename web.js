@@ -13,9 +13,11 @@ query.on('row', function(row) {
 	console.log("City: %s", row.city);
 	console.log("Date: %tc/%Tc\n", row.date);
 });
+/*
 query.on('end', function() { 
   client.end();
 });
+*/
 
 /*
 pg.connect(process.env.DATABASE_URL, function(err, client) {
