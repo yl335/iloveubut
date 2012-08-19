@@ -13,8 +13,8 @@ query.on('row', function(row) {
 	console.log("City: %s", row.city);
 	console.log("Date: %tc/%Tc\n", row.date);
 });
-query.on('end' function() {
-	client.end();
+query.on('end', function() { 
+  client.end();
 });
 
 /*
