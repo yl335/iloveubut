@@ -11,7 +11,7 @@ var express = require('express')
 var app = express();
 
 //DATABASE
-var DATABASE_URL = process.env.DATABASE_URL | "dbname=swallowlink";
+var DATABASE_URL = process.env.DATABASE_URL || "dbname=swallowlink";
 console.log('process.env.DATABASE_URL: %s', process.env.DATABASE_URL);
 console.log('DATABASE_URL: %s', DATABASE_URL);
 pg.connect(DATABASE_URL, function(err, client) {
