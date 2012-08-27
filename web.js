@@ -1,44 +1,49 @@
-var express = require('express');
-var pg = require('pg');
+/**
+ * Module dependencies.
+ */
 
-var app = express.createServer(express.logger());
+var express = require('express')
+  , routes = require('./routes')
+  , http = require('http')
+  , path = require('path')
+  , pg = require('pg');
 
-//database
-/*
-var client = new pg.Client(process.env.DATABASE_URL);
-client.connect();
-*/
-/*
+var app = express();
 
-var query = client.query('SELECT * FROM weather');
-*/
-/*
-query.on('row', function(row) {
-	console.log(row);
-	console.log("City: %s", row.city);
-	console.log("Date: %tc/%Tc\n", row.date);
-});
-*/
-/*
-query.on('end', function() { 
-  client.end();
-});
-*/
-
-pg.connect(process.env.DATABASE_URL, function(err, client) {
+//DATABASE
+var DATABASE_URL = process.env.DATABASE_URL | "dbname=swallowlink";
+pg.connect(DATABASE_URL, function(err, client) {
   var query = client.query('SELECT * FROM weather');
 
   query.on('row', function(row) {
     console.log(JSON.stringify(row));
   });
+  
+  query.on('end', function() {
+    client.end();
+  });
 });
 
-app.get('/', function(request, response) {
-/* 	pg.connect(); */
-  response.send('Hello World!');
+app.configure(function(){
+  app.set('port', process.env.PORT || 3000);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
+  app.use(express.favicon());
+  app.use(express.logger('dev'));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
+  app.use(app.router);
+  app.use(express.static(path.join(__dirname, 'public')));
 });
 
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
+app.configure('development', function(){
+  app.use(express.errorHandler());
+});
+
+app.get('/', routes.index);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
 });

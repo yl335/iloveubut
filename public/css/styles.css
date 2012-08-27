@@ -1,0 +1,70 @@
+body {
+	line-height: 130%;
+	position: relative;
+	font-family: 'Capriola', sans-serif;
+}
+
+h1 {
+	font-family: 'Damion', cursive;
+	font-size: 84px;
+	line-height: 130%;
+}
+
+textarea {
+	display: block;
+	font-family: 'Damion', cursive;
+	width: 400px;
+	font-size: 24px;
+	padding: 10px 20px 10px;
+	line-height: 130%;
+	height: 30px;
+	float: left;
+	margin-top: 40px;
+	margin-left: 40px;
+}
+
+.container {
+	width: 800px;
+	margin-bottom: 100px;
+}
+
+.clear {
+	clear: both;
+}
+
+
+/* ICONS */
+[class^="icon-"], 
+[class*=" icon-"] {
+	background: none;
+}
+
+/* NAV */
+#nav-bar{
+	margin-top: 18px;
+}
+#nav-bar > li {
+	float: right;
+}
+#nav-bar > li > a {
+	font-size: 18px;
+	color: #ccc;
+	-webkit-transition:color 0.5s ease-in-out;
+	padding: 0;
+	margin: 0px 0 0 10px;
+}
+#nav-bar > li > a:hover {
+	background: none;
+	text-decoration: none;
+	cursor: pointer;
+	color: #08c;
+}
+#nav-bar > li.active > a,
+#nav-bar > li.active > a:hover {
+	color: #333;
+	background: none;
+}
+#nav-bar > li > a > i {
+	height: 18px;
+	line-height: 18px;
+}
