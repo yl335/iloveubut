@@ -31,11 +31,12 @@ app.configure('development', function(){
 
 //DATABASE
 if (!DATABASE_URL) {
-  DATABASE_URL = "dbname=swallowlink";
+  DATABASE_URL = "postgres://swallowlink@localhost/swallowlink";
 }
 console.log('process.env.DATABASE_URL: %s', process.env.DATABASE_URL);
 console.log('DATABASE_URL: %s', DATABASE_URL);
 pg.connect(DATABASE_URL, function(err, client) {
+  console.log("CLIENT: %s", client);
   var query = client.query('SELECT * FROM weather');
 
   query.on('row', function(row) {
