@@ -32,9 +32,8 @@ exports.post = function(req, res) {
 }
 
 exports.posts = function(req, res) {
-	console.log("RANDOM POSTS");
 	pg.connect(DATABASE_URL, function(err, client) {
-		//INSERT POST
+		console.log("RANDOM POSTS");
 		var query = client.query('SELECT * FROM but OFFSET RANDOM() * (SELECT count(*) FROM but) LIMIT 1');
 
 		//VERIFY POST

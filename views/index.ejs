@@ -62,10 +62,13 @@ $(".nav-link-posts").click(function() {
 	$.ajax({
 		type: 		"GET",
 		url: 		"/posts",
+		context: 	this,
 		success: 	function(data) {
 			var $fadeEl;
 			if ($("form").is(":visible")) {
 				$fadeEl = $("form");
+				$("#nav-bar li.active").removeClass("active");
+				$(this).parents("li").addClass("active");
 			}
 			else {
 				$fadeEl = $("#post");

@@ -8,6 +8,7 @@ h1 {
 	font-family: 'Damion', cursive;
 	font-size: 84px;
 	line-height: 100%;
+	font-weight: normal;
 }
 
 textarea {
@@ -19,7 +20,7 @@ textarea {
 	line-height: 130%;
 	height: 30px;
 	float: left;
-	margin-top: 40px;
+	margin-top: 30px;
 	margin-left: 40px;
 }
 
