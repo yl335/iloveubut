@@ -7,7 +7,7 @@ body {
 h1 {
 	font-family: 'Damion', cursive;
 	font-size: 84px;
-	line-height: 130%;
+	line-height: 100%;
 }
 
 textarea {
@@ -67,4 +67,18 @@ textarea {
 #nav-bar > li > a > i {
 	height: 18px;
 	line-height: 18px;
+}
+
+#post ul {
+	list-style: none;
+	margin: 0;
+	margin-top: 40px;
+	clear: both;
+}
+#post ul > li {
+	float: left;
+	margin: 0 10px;
+}
+#post ul > li:first-child {
+	margin-left: 0;
 }

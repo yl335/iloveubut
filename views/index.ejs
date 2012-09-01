@@ -13,19 +13,70 @@
   	<body>
 	  	<div class="container">
 	  		<ul id="nav-bar" class="nav nav-pills">
-	  			<li><a class="nav-link-about"><i class="icon-info-sign"></i></a></li>
+	  			<li><a class="nav-link-about" href="/about"><i class="icon-info-sign"></i></a></li>
 	  			<li><a class="nav-link-posts"><i class="icon-heart"></i></a></li>
-	  			<li class="active"><a class="nav-link-post"><i class="icon-pencil"></i></a></li>
+	  			<li class="active"><a class="nav-link-post" href="/"><i class="icon-pencil"></i></a></li>
 	  			<li class="clear"></li>
 	  		</ul>
 
 	  		<div class="well" style="position:relative;top:50px;padding:50px">
 	  			<h1>I love you,</h1>
-	  			<h1 style="float:left">but</h1>
-	  			<textarea placeholder="why is there still a but?"></textarea>
-	  			<button type="button" class="btn btn-primary btn-large" style="margin-top:40px;margin-left:20px">Post</button>
+	  			<form>
+	  				<h1 style="float:left">but</h1>
+	  				<textarea id="val-but" placeholder="why is there still a but?"></textarea>
+	  				<button id="btn-but" type="button" class="btn btn-primary btn-large" style="margin-top:40px;margin-left:20px">Post</button>
+	  			</form>
+	  			<div id="post">
+	  				<h1></h1>
+	  				<ul id="post-actions" class="nav">
+						<li><a><i class="icon-heart"></i> Like (12)</a></li>
+						<li><a><i class="icon-share"></i> Share</a></li>
+						<li><a><i class="icon-comment"></i> Comment</a></li>
+						<li class="clear" style="float:none"></li>
+					</ul>
+				</div>
 	  			<div class="clear"/>
 	  		</div>
 	  	</div>
+
+	  	<script type="text/javascript">
+$("#post").hide();
+$("#btn-but").click(function() {
+	var value = $.trim($("#val-but").val());
+	if (value) {
+		$.ajax({
+			type: 		"POST",
+			url: 		"/post",
+			data: 		{reason: value},
+			success: 	function() {
+				$("form").fadeOut(function() {
+					$("#post h1").text("but "+value);
+					$("#post").fadeIn();
+				})
+			}
+		})
+	}
+})
+
+$(".nav-link-posts").click(function() {
+	$.ajax({
+		type: 		"GET",
+		url: 		"/posts",
+		success: 	function(data) {
+			var $fadeEl;
+			if ($("form").is(":visible")) {
+				$fadeEl = $("form");
+			}
+			else {
+				$fadeEl = $("#post");
+			}
+			$fadeEl.fadeOut(function() {
+				$("#post h1").text("but "+data);
+				$("#post").fadeIn();
+			})
+		}
+	})
+})
+	  	</script>
   	</body>
 </html>
